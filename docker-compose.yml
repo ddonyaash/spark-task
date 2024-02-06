@@ -1,0 +1,14 @@
+version: '3'
+services:
+  spark:
+    image: jupyter/pyspark-notebook
+    container_name: spark
+    ports:
+      - "8888:8888"
+      - "4040-4080:4040-4080"
+    volumes:
+      - ./notebooks/:/notebooks
+    command: start-notebook.sh --NotebookApp.notebook_dir=/notebooks --NotebookApp.token='' --NotebookApp.password=''
+    build:
+      context: .
+      dockerfile: Dockerfile
